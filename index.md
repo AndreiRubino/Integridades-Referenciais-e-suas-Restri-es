@@ -3,7 +3,7 @@ Este artigo tem como objetivo esclarecer os conceitos e citar exemplos práticos
 dos tipos de FOREIGN KEY para garantir uma integridade referencial de acordo com a sua regra de negócio. As formas abaixo são uteis no dia a dia de cada desenvolvedor/dba.
 
 O oracle permite 3 tipos diferentes de integridades referenciais, sendo elas:
-ON DELETE CASCADE, ON DELETE SET NULL E ON DELETE NO ACTION (PADRÃO).
+**ON DELETE CASCADE**, **ON DELETE SET NUL**L E **ON DELETE NO ACTION** (PADRÃO).
 
 
 Para exemplificar nosso caso iremos criar 4 tabelas (CLIENTE, PRODUTO, PEDIDO e ITEM_PEDIDO). 
@@ -104,7 +104,7 @@ INSERT INTO GPO.ITEM_PEDIDO (ID_ITEM_PEDIDO, ID_PEDIDO,ID_PRODUTO, QT_ITEM, VL_T
 INSERT INTO GPO.ITEM_PEDIDO (ID_ITEM_PEDIDO, ID_PEDIDO,ID_PRODUTO, QT_ITEM, VL_TOTAL) VALUES (10,3,8,1,120);
 INSERT INTO GPO.ITEM_PEDIDO (ID_ITEM_PEDIDO, ID_PEDIDO,ID_PRODUTO, QT_ITEM, VL_TOTAL) VALUES (11,3,9,1,150);
 ```
-ON DELETE CASCADE é utilizada quando queremos remover o registro pai e seus filhos também, ou seja, os registros a qual ele é referenciado. Essa não é uma prática comum, mas pode ser utilizada em alguns casos. 
+**ON DELETE CASCADE** é utilizada quando queremos remover o registro pai e seus filhos também, ou seja, os registros a qual ele é referenciado. Essa não é uma prática comum, mas pode ser utilizada em alguns casos. 
 Esse caso seria útil caso quiséssemos excluir um pedido e seus itens vinculados de forma automática.
 
 Nessa imagem mostramos todos os pedidos.
@@ -145,7 +145,7 @@ Atenção constraints do tipo ON DELETE CASCADE devem ser utilizadas somente em 
 
 
 
-ON {DELETE|UPDATE} SET NULL é suportado tanto para comandos DELETE quanto UPDATE, nesse caso quando é feito o delete ou update do registro pai, o registro filho será atualizado para NULL. 
+**ON {DELETE|UPDATE} SET NULL** é suportado tanto para comandos DELETE quanto UPDATE, nesse caso quando é feito o delete ou update do registro pai, o registro filho será atualizado para NULL. 
 É importante lembrar que quando especificamos SET NULL não podemos declarar a coluna na tabela filha como NOT NULL. Mas em qual caso isso seria útil?
 
 Com a LGPD(Lei Geral de Proteção de Dados) em vigor qualquer pessoa tem direito de solicitar para qualquer empresa que apague seus dados pessoais do sistema.
@@ -180,7 +180,7 @@ FROM   GPO.PEDIDO;
 Atenção constraints do tipo ON {DELETE|UPDATE} SET NULL devem ser utilizadas somente em casos específicos onde a regra de negocio da aplicação exija esse comportamento, pois a mesma aumenta o risco de perdas de dados.
 
 
-ON {DELETE|UPDATE} NO ACTION é a restrição padrão quando não informamos nenhuma na criação da tabela com constraints ou em comandos Alter table add constraints. Se você tentar deletar um registro pai a qual tenha registros filhos referenciados ocorrerá um erro. Vamos a um exemplo.
+**ON {DELETE|UPDATE} NO ACTION** é a restrição padrão quando não informamos nenhuma na criação da tabela com constraints ou em comandos Alter table add constraints. Se você tentar deletar um registro pai a qual tenha registros filhos referenciados ocorrerá um erro. Vamos a um exemplo.
 
 Desejamos deletar um PRODUTO cadastrado em nossa base de dados, no entanto esse produto já foi vendido diversas vezes e por isso está referenciado na tabela ITEM_PEDIDO.
 
@@ -242,4 +242,5 @@ CREATE TABLE GPO.ITEM_PEDIDO
 ```
 ![Image](https://bn1301files.storage.live.com/y4mF6H61V25blS9-78dv_jXgRLohDM_sO6IXcrIC62N6RRgGmhhGCM-nE6B7GgieU9qNRkKPlUg_0Fnv1LFf92jcn0EBz4LcMx27x05ugoHMZauXcNVAEW07vqPLo9AI0rPwCb2n2Do3MIT_uUNCNCk335mPEod4nmHzLYQb1FR19hi9-9Dlyw8wRa1kBB8kpPf?width=1271&height=637&cropmode=none)
 
-![Image]()
+**Referências**
+https://docs.oracle.com/cd/E17952_01/mysql-5.6-en/create-table-foreign-keys.html
