@@ -178,7 +178,8 @@ FROM   GPO.PEDIDO;
 ```
 ![Image](https://bn1301files.storage.live.com/y4moTRDwA4Hgk3eHtim5Tu3ztfpJik089hQj3y-C0TRnNrN96iS5RtjQHKo8AvxNjQ9VQfazDh-eYUyDCLKAFoHHCrRsm9y0lrUqEiKIwmT_Uwp9DCof-j7nkcEUEa5f7KoRtlfijVE1vcgMxHLVhIJvqH-ictDIMbgla9FcWE8BqBu8UvU3-LcEVdigCKjhixE?width=1277&height=641&cropmode=none)
 Atenção constraints do tipo ON {DELETE|UPDATE} SET NULL devem ser utilizadas somente em casos específicos onde a regra de negocio da aplicação exija esse comportamento, pois a mesma aumenta o risco de perdas de dados.
-ON {DELETE|UPDATE} NO ACTION é a restrição padrão quando não informamos nenhuma na criação da tabela com constraints ou em comandos Alter table add constraints. Se você tentar deletar um registro pai a qual tenha registros filhos referenciados ocorrerá um erro. Vamos a um exemplo.
+
+**ON {DELETE|UPDATE} NO ACTION** é a restrição padrão quando não informamos nenhuma na criação da tabela com constraints ou em comandos Alter table add constraints. Se você tentar deletar um registro pai a qual tenha registros filhos referenciados ocorrerá um erro. Vamos a um exemplo.
 Desejamos deletar um PRODUTO cadastrado em nossa base de dados, no entanto esse produto já foi vendido diversas vezes e por isso está referenciado na tabela ITEM_PEDIDO.
 
 Verificando os produtos cadastrados.
