@@ -3,7 +3,7 @@ Este artigo tem como objetivo esclarecer os conceitos e citar exemplos práticos
 dos tipos de FOREIGN KEY para garantir uma integridade referencial de acordo com a sua regra de negócio. As formas abaixo são uteis no dia a dia de cada desenvolvedor/dba.
 
 O oracle permite 3 tipos diferentes de integridades referenciais, sendo elas:
-**ON DELETE CASCADE**, **ON DELETE SET NUL**L E **ON DELETE NO ACTION** (PADRÃO).
+**ON DELETE CASCADE**, **ON DELETE SET NULL** E **ON DELETE NO ACTION** (PADRÃO).
 
 
 Para exemplificar nosso caso iremos criar 4 tabelas (CLIENTE, PRODUTO, PEDIDO e ITEM_PEDIDO). 
@@ -180,7 +180,7 @@ FROM   GPO.PEDIDO;
 Atenção constraints do tipo ON {DELETE|UPDATE} SET NULL devem ser utilizadas somente em casos específicos onde a regra de negocio da aplicação exija esse comportamento, pois a mesma aumenta o risco de perdas de dados.
 
 
-**	  ON {DELETE|UPDATE} NO ACTION** é a restrição padrão quando não informamos nenhuma na criação da tabela com constraints ou em comandos Alter table add constraints. Se você tentar deletar um registro pai a qual tenha registros filhos referenciados ocorrerá um erro. Vamos a um exemplo. 
+**ON {DELETE|UPDATE} NO ACTION** é a restrição padrão quando não informamos nenhuma na criação da tabela com constraints ou em comandos Alter table add constraints. Se você tentar deletar um registro pai a qual tenha registros filhos referenciados ocorrerá um erro. Vamos a um exemplo. 
 
 Desejamos deletar um PRODUTO cadastrado em nossa base de dados, no entanto esse produto já foi vendido diversas vezes e por isso está referenciado na tabela ITEM_PEDIDO.
 
